@@ -4,6 +4,8 @@ import memory.Memory;
 import processor.Processor;
 
 public interface SchemaFactory {
-    Memory getMemory();
+    default Memory getMemory(){
+        return new Memory();
+    }
     Processor getProcessor();
 }
