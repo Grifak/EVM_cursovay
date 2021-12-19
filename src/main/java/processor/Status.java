@@ -3,6 +3,7 @@ package processor;
 import java.util.Arrays;
 
 public enum Status {
+    START("START"),
     WORK_WITH_MEMORY_1("WORK_WITH_MEMORY_1"),
     WORK_WITH_MEMORY_2("WORK_WITH_MEMORY_2"),
     WORK_WITH_MEMORY_3("WORK_WITH_MEMORY_3"),
