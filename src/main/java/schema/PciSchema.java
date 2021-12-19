@@ -5,8 +5,8 @@ import factory.PciSchemaFactory;
 import factory.SchemaFactory;
 
 public class PciSchema extends Schema {
-    public PciSchema() {
-        super();
+    public PciSchema(Integer cmdPercent, Integer memPercent) {
+        super(cmdPercent, memPercent);
     }
 
     @Override

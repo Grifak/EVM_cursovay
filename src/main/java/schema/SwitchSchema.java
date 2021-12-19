@@ -4,9 +4,8 @@ import factory.SchemaFactory;
 import factory.SwitchSchemaFactory;
 
 public class SwitchSchema extends Schema{
-
-    public SwitchSchema() {
-        super();
+    public SwitchSchema(Integer cmdPercent, Integer memPercent) {
+        super(cmdPercent, memPercent);
     }
 
     @Override
