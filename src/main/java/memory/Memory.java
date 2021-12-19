@@ -16,4 +16,12 @@ public class Memory {
     public void setBusy(Boolean busy) {
         isBusy = busy;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
