@@ -2,6 +2,8 @@ package processor;
 
 import memory.Memory;
 
+import java.util.concurrent.TimeUnit;
+
 public abstract class Processor extends Thread{
     protected String procName;
     protected Status status;
@@ -9,37 +11,77 @@ public abstract class Processor extends Thread{
     protected Integer cntOwnMemoryCom;
     protected Integer cntExternalMemoryCom;
     protected Memory ownMemory;
+    protected Memory exMem_1;
+    protected Memory exMem_2;
+    protected Memory exMem_3;
 
     public Processor(Integer cntNoMemoryCom,
                      Integer cntOwnMemoryCom,
                      Integer cntExternalMemoryCom,
                      Memory ownMemory,
-                     String procName){
+                     String procName,
+                     Memory exMem_1,
+                     Memory exMem_2,
+                     Memory exMem_3){
         this.cntNoMemoryCom = cntNoMemoryCom;
         this.cntOwnMemoryCom = cntOwnMemoryCom;
         this.cntExternalMemoryCom = cntExternalMemoryCom;
         this.ownMemory = ownMemory;
         this.procName = procName;
+        this.exMem_1 = exMem_1;
+        this.exMem_2 = exMem_2;
+        this.exMem_3 = exMem_3;
     }
 
     public abstract void runProgram() throws InterruptedException;
 
-    public String getRandomMemory(){
-        Integer memNumber = (int)(Math.random() * 4);
-        String memName = null;
+    public Memory getRandomMemory(){
+        Integer memNumber = (int)(Math.random() * 3);
+        Memory memory = null;
         switch (memNumber){
-            case 0 -> memName = "MEMORY_1";
-            case 1 -> memName = "MEMORY_2";
-            case 2 -> memName = "MEMORY_3";
-            case 3 -> memName = "MEMORY_4";
+            case 0 -> memory = this.exMem_1;
+            case 1 -> memory = this.exMem_2;
+            case 2 -> memory = this.exMem_3;
         }
 
-        return memName;
+        return memory;
     }
 
     @Override
     public String toString() {
         return procName + ": " + status.getTitle();
+    }
+
+    public synchronized void workWithOwnMem() throws InterruptedException {
+        if(ownMemory.getBusy() == true) {
+            this.wait();
+            this.status = Status.WAIT;
+            System.out.println(toString());
+        }
+        else {
+            this.status = Status.fromString(ownMemory.getName());
+            ownMemory.setBusy(true);
+            System.out.println(toString());
+            TimeUnit.SECONDS.sleep(2);
+            this.cntOwnMemoryCom--;
+            ownMemory.setBusy(false);
+            notify();
+        }
+    }
+
+    public synchronized void workWithExternalMem() throws InterruptedException {
+        Memory exMem = getRandomMemory();
+        if(exMem.getBusy() == true) {
+            this.wait();
+            this.status = Status.WAIT;
+            System.out.println(toString());
+        }
+        else {
+            this.status = Status.fromString(exMem.getName());
+            System.out.println(toString());
+            TimeUnit.SECONDS.sleep(2);
+            this.cntExternalMemoryCom--;
+        }
     }
 
     public String getProcName() {

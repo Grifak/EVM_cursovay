@@ -7,8 +7,11 @@ public class ProcessorSwitchCon extends Processor{
                               Integer cntOwnMemoryCom,
                               Integer cntExternalMemoryCom,
                               Memory ownMemory,
-                              String procName) {
-        super(cntNoMemoryCom, cntOwnMemoryCom, cntExternalMemoryCom, ownMemory, procName);
+                              String procName,
+                              Memory exMem_1,
+                              Memory exMem_2,
+                              Memory exMem_3) {
+        super(cntNoMemoryCom, cntOwnMemoryCom, cntExternalMemoryCom, ownMemory, procName, exMem_1, exMem_2, exMem_3);
     }
 
     @Override

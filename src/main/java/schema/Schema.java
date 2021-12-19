@@ -35,15 +35,15 @@ public abstract class Schema {
         int cntExternalDataCom = (int) (cntMemCommand * memValue.doubleValue());
 
         SchemaFactory schemaFactory = makeSchemaFactory();
-        CPU_1 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_1, "CPU_1");
-        CPU_2 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_2, "CPU_2");
-        CPU_3 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_3, "CPU_3");
-        CPU_4 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_4, "CPU_4");
-
         memory_1 = schemaFactory.getMemory("MEMORY_1");
         memory_2 = schemaFactory.getMemory("MEMORY_2");
         memory_3 = schemaFactory.getMemory("MEMORY_3");
         memory_4 = schemaFactory.getMemory("MEMORY_4");
+
+        CPU_1 = schemaFactory.getProcessor(cntNoMemCommand, cntOwnDataCom, cntExternalDataCom, memory_1, "CPU_1", memory_2, memory_3, memory_4);
+        CPU_2 = schemaFactory.getProcessor(cntNoMemCommand, cntOwnDataCom, cntExternalDataCom, memory_2, "CPU_2", memory_1, memory_3, memory_4);
+        CPU_3 = schemaFactory.getProcessor(cntNoMemCommand, cntOwnDataCom, cntExternalDataCom, memory_3, "CPU_3", memory_1, memory_2, memory_4);
+        CPU_4 = schemaFactory.getProcessor(cntNoMemCommand, cntOwnDataCom, cntExternalDataCom, memory_4, "CPU_4", memory_1, memory_2, memory_3);
     }
 
     public abstract void runSchema();

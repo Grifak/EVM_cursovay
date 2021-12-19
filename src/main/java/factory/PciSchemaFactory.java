@@ -11,7 +11,10 @@ public class PciSchemaFactory implements SchemaFactory{
                                   Integer cntOwnMemoryCom,
                                   Integer cntExternalMemoryCom,
                                   Memory memory,
-                                  String procName) {
-        return new ProcessorPciCon(cntNoMemoryCom, cntOwnMemoryCom, cntExternalMemoryCom, memory, procName);
+                                  String procName,
+                                  Memory exMem_1,
+                                  Memory exMem_2,
+                                  Memory exMem_3) {
+        return new ProcessorPciCon(cntNoMemoryCom, cntOwnMemoryCom, cntExternalMemoryCom, memory, procName, exMem_1, exMem_2, exMem_3);
     }
 }

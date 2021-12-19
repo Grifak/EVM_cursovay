@@ -11,5 +11,8 @@ public interface SchemaFactory {
                            Integer cntOwnMemoryCom,
                            Integer cntExternalMemoryCom,
                            Memory memory,
-                           String procName);
+                           String procName,
+                           Memory exMem_1,
+                           Memory exMem_2,
+                           Memory exMem_3);
 }
