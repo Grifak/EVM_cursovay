@@ -7,5 +7,5 @@ public interface SchemaFactory {
     default Memory getMemory(){
         return new Memory(false);
     }
-    Processor getProcessor();
+    Processor getProcessor(Integer cntNoMemoryCom, Integer cntOwnMemoryCom, Integer cntExternalMemoryCom, Memory memory);
 }

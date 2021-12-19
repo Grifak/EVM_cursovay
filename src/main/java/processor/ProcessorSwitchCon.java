@@ -1,10 +1,10 @@
 package processor;
 
+import memory.Memory;
+
 public class ProcessorSwitchCon extends Processor{
-    @Override
-    public void run() {
-        runProgram(5,5);
-        System.out.println(this.getName());
+    public ProcessorSwitchCon(Integer cntNoMemoryCom, Integer cntOwnMemoryCom, Integer cntExternalMemoryCom, Memory ownMemory) {
+        super(cntNoMemoryCom, cntOwnMemoryCom, cntExternalMemoryCom, ownMemory);
     }
 
     @Override
