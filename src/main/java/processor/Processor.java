@@ -2,7 +2,7 @@ package processor;
 
 import memory.Memory;
 
-public class Processor extends Thread{
+public abstract class Processor extends Thread{
     private Status status;
     private Integer cntNoMemoryCom;
     private Integer cntOwnMemoryCom;
