@@ -18,6 +18,19 @@ public abstract class Processor extends Thread{
 
     public abstract void runProgram() throws InterruptedException;
 
+    public String getRandomMemory(){
+        Integer memNumber = (int)(Math.random() * 4);
+        String memName = null;
+        switch (memNumber){
+            case 0 -> memName = "MEMORY_1";
+            case 1 -> memName = "MEMORY_2";
+            case 2 -> memName = "MEMORY_3";
+            case 3 -> memName = "MEMORY_4";
+        }
+
+        return memName;
+    }
+
     public Integer getCntNoMemoryCom() {
         return cntNoMemoryCom;
     }
