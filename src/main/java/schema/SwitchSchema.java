@@ -9,13 +9,13 @@ public class SwitchSchema extends Schema{
     }
 
     @Override
-    public void runSchema() {
-        System.out.println("Run Switch schema");
-        super.runSchema();
+    protected SchemaFactory makeSchemaFactory() {
+        return new SwitchSchemaFactory();
     }
 
     @Override
-    protected SchemaFactory makeSchemaFactory() {
-        return new SwitchSchemaFactory();
+    public void runSchema() {
+        System.out.println("Run Switch schema");
+        super.runSchema();
     }
 }

@@ -29,23 +29,24 @@ public abstract class Schema {
         BigDecimal cmdValue = new BigDecimal((1 - cmdPercent/100.0), context);
         BigDecimal memValue = new BigDecimal((1 - memPercent/100.0), context);
 
-        int noMemCommand = (int) (1000 * (cmdPercent/100.0));
-        int memCommand = (int) (1000 * cmdValue.doubleValue());
-        int cntOwnData = (int) (memCommand * (memPercent/100.0));
-        int cntExternalData = (int) (memCommand * memValue.doubleValue());
-        Boolean isBusy = false;
+        int cntNoMemCommand = (int) (1000 * (cmdPercent/100.0));
+        int cntMemCommand = (int) (1000 * cmdValue.doubleValue());
+        int cntOwnDataCom = (int) (cntMemCommand * (memPercent/100.0));
+        int cntExternalDataCom = (int) (cntMemCommand * memValue.doubleValue());
 
         SchemaFactory schemaFactory = makeSchemaFactory();
-        CPU_1 = schemaFactory.getProcessor();
-        CPU_2 = schemaFactory.getProcessor();
-        CPU_3 = schemaFactory.getProcessor();
-        CPU_4 = schemaFactory.getProcessor();
+        CPU_1 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_1);
+        CPU_2 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_2);
+        CPU_3 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_3);
+        CPU_4 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_4);
 
         memory_1 = schemaFactory.getMemory();
         memory_2 = schemaFactory.getMemory();
         memory_3 = schemaFactory.getMemory();
         memory_4 = schemaFactory.getMemory();
     }
+
+    protected abstract SchemaFactory makeSchemaFactory();
 
     public void runSchema(){
         CPU_1.run();
@@ -61,6 +62,4 @@ public abstract class Schema {
     public void setTime(Float time) {
         this.time = time;
     }
-
-    abstract protected SchemaFactory makeSchemaFactory();
 }

@@ -10,13 +10,13 @@ public class PciSchema extends Schema {
     }
 
     @Override
-    public void runSchema() {
-        System.out.println("Run PCI schema");
-        super.runSchema();
+    protected SchemaFactory makeSchemaFactory() {
+        return new PciSchemaFactory();
     }
 
     @Override
-    protected SchemaFactory makeSchemaFactory() {
-        return new PciSchemaFactory();
+    public void runSchema() {
+        System.out.println("Run PCI schema");
+        super.runSchema();
     }
 }
