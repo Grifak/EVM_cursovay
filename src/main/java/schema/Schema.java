@@ -40,10 +40,10 @@ public abstract class Schema {
         CPU_3 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_3);
         CPU_4 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_4);
 
-        memory_1 = schemaFactory.getMemory();
-        memory_2 = schemaFactory.getMemory();
-        memory_3 = schemaFactory.getMemory();
-        memory_4 = schemaFactory.getMemory();
+        memory_1 = schemaFactory.getMemory("MEMORY_1");
+        memory_2 = schemaFactory.getMemory("MEMORY_2");
+        memory_3 = schemaFactory.getMemory("MEMORY_3");
+        memory_4 = schemaFactory.getMemory("MEMORY_4");
     }
 
     public abstract void runSchema();

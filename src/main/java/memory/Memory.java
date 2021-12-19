@@ -1,9 +1,11 @@
 package memory;
 
 public class Memory {
-    Boolean isBusy;
+    private String name;
+    private Boolean isBusy;
 
-    public Memory(Boolean isBusy) {
+    public Memory(String name, Boolean isBusy) {
+        this.name = name;
         this.isBusy = isBusy;
     }
 
