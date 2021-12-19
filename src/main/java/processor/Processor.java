@@ -45,4 +45,8 @@ public abstract class Processor extends Thread{
     public String getStatus(){
         return this.status.getTitle();
     }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }
