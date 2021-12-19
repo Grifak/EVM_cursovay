@@ -3,11 +3,11 @@ package processor;
 import memory.Memory;
 
 public abstract class Processor extends Thread{
-    private Status status;
-    private Integer cntNoMemoryCom;
-    private Integer cntOwnMemoryCom;
-    private Integer cntExternalMemoryCom;
-    private Memory ownMemory;
+    protected Status status;
+    protected Integer cntNoMemoryCom;
+    protected Integer cntOwnMemoryCom;
+    protected Integer cntExternalMemoryCom;
+    protected Memory ownMemory;
 
     public Processor(Integer cntNoMemoryCom, Integer cntOwnMemoryCom, Integer cntExternalMemoryCom, Memory ownMemory){
         this.cntNoMemoryCom = cntNoMemoryCom;
