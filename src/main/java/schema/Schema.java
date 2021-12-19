@@ -12,6 +12,8 @@ public abstract class Schema {
     private final Integer cntCommands = 1000;
     private Integer cmdPercent;
     private Integer memPercent;
+    private Float time;
+
     private Processor CPU_1;
     private Processor CPU_2;
     private Processor CPU_3;
@@ -39,10 +41,10 @@ public abstract class Schema {
         CPU_3 = schemaFactory.getProcessor();
         CPU_4 = schemaFactory.getProcessor();
 
-        memory_1 = schemaFactory.getMemory(cntOwnData, cntExternalData, isBusy);
-        memory_2 = schemaFactory.getMemory(cntOwnData, cntExternalData, isBusy);
-        memory_3 = schemaFactory.getMemory(cntOwnData, cntExternalData, isBusy);
-        memory_4 = schemaFactory.getMemory(cntOwnData, cntExternalData, isBusy);
+        memory_1 = schemaFactory.getMemory();
+        memory_2 = schemaFactory.getMemory();
+        memory_3 = schemaFactory.getMemory();
+        memory_4 = schemaFactory.getMemory();
     }
 
     public void runSchema(){
@@ -50,6 +52,14 @@ public abstract class Schema {
         CPU_2.run();
         CPU_3.run();
         CPU_4.run();
+    }
+
+    public Float getTime() {
+        return time;
+    }
+
+    public void setTime(Float time) {
+        this.time = time;
     }
 
     abstract protected SchemaFactory makeSchemaFactory();
