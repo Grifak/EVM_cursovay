@@ -17,6 +17,13 @@ public class PciSchema extends Schema {
     @Override
     public void runSchema() {
         System.out.println("Run PCI schema");
-        super.runSchema();
+        long start = System.currentTimeMillis();
+        super.CPU_1.start();
+        super.CPU_2.start();
+        super.CPU_3.start();
+        super.CPU_4.start();
+        long end = System.currentTimeMillis() + (super.CPU_1.getCntNoMemoryCom() * 1000);
+        this.time = (end - start)/1000.0;
+
     }
 }

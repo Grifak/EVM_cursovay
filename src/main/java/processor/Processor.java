@@ -16,6 +16,8 @@ public abstract class Processor extends Thread{
         this.ownMemory = ownMemory;
     }
 
+    public abstract void runProgram() throws InterruptedException;
+
     public Integer getCntNoMemoryCom() {
         return cntNoMemoryCom;
     }
