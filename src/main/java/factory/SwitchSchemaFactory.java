@@ -7,7 +7,11 @@ import processor.ProcessorSwitchCon;
 public class SwitchSchemaFactory implements SchemaFactory{
 
     @Override
-    public Processor getProcessor(Integer cntNoMemoryCom, Integer cntOwnMemoryCom, Integer cntExternalMemoryCom, Memory memory) {
-        return new ProcessorSwitchCon(cntNoMemoryCom, cntOwnMemoryCom, cntExternalMemoryCom, memory);
+    public Processor getProcessor(Integer cntNoMemoryCom,
+                                  Integer cntOwnMemoryCom,
+                                  Integer cntExternalMemoryCom,
+                                  Memory memory,
+                                  String procName) {
+        return new ProcessorSwitchCon(cntNoMemoryCom, cntOwnMemoryCom, cntExternalMemoryCom, memory, procName);
     }
 }

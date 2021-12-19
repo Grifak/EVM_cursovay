@@ -3,17 +3,23 @@ package processor;
 import memory.Memory;
 
 public abstract class Processor extends Thread{
+    protected String procName;
     protected Status status;
     protected Integer cntNoMemoryCom;
     protected Integer cntOwnMemoryCom;
     protected Integer cntExternalMemoryCom;
     protected Memory ownMemory;
 
-    public Processor(Integer cntNoMemoryCom, Integer cntOwnMemoryCom, Integer cntExternalMemoryCom, Memory ownMemory){
+    public Processor(Integer cntNoMemoryCom,
+                     Integer cntOwnMemoryCom,
+                     Integer cntExternalMemoryCom,
+                     Memory ownMemory,
+                     String procName){
         this.cntNoMemoryCom = cntNoMemoryCom;
         this.cntOwnMemoryCom = cntOwnMemoryCom;
         this.cntExternalMemoryCom = cntExternalMemoryCom;
         this.ownMemory = ownMemory;
+        this.procName = procName;
     }
 
     public abstract void runProgram() throws InterruptedException;
@@ -29,6 +35,19 @@ public abstract class Processor extends Thread{
         }
 
         return memName;
+    }
+
+    @Override
+    public String toString() {
+        return procName + ": " + status.getTitle();
+    }
+
+    public String getProcName() {
+        return procName;
+    }
+
+    public void setProcName(String procName) {
+        this.procName = procName;
     }
 
     public Integer getCntNoMemoryCom() {

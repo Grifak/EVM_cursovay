@@ -35,10 +35,10 @@ public abstract class Schema {
         int cntExternalDataCom = (int) (cntMemCommand * memValue.doubleValue());
 
         SchemaFactory schemaFactory = makeSchemaFactory();
-        CPU_1 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_1);
-        CPU_2 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_2);
-        CPU_3 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_3);
-        CPU_4 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_4);
+        CPU_1 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_1, "CPU_1");
+        CPU_2 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_2, "CPU_2");
+        CPU_3 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_3, "CPU_3");
+        CPU_4 = schemaFactory.getProcessor(cntNoMemCommand, cntMemCommand, cntExternalDataCom, memory_4, "CPU_4");
 
         memory_1 = schemaFactory.getMemory("MEMORY_1");
         memory_2 = schemaFactory.getMemory("MEMORY_2");

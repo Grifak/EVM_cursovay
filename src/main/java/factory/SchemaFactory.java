@@ -7,5 +7,9 @@ public interface SchemaFactory {
     default Memory getMemory(String name){
         return new Memory(name ,false);
     }
-    Processor getProcessor(Integer cntNoMemoryCom, Integer cntOwnMemoryCom, Integer cntExternalMemoryCom, Memory memory);
+    Processor getProcessor(Integer cntNoMemoryCom,
+                           Integer cntOwnMemoryCom,
+                           Integer cntExternalMemoryCom,
+                           Memory memory,
+                           String procName);
 }

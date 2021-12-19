@@ -5,8 +5,8 @@ import memory.Memory;
 import java.util.concurrent.TimeUnit;
 
 public class ProcessorPciCon extends Processor{
-    public ProcessorPciCon(Integer cntNoMemoryCom, Integer cntOwnMemoryCom, Integer cntExternalMemoryCom, Memory ownMemory) {
-        super(cntNoMemoryCom, cntOwnMemoryCom, cntExternalMemoryCom, ownMemory);
+    public ProcessorPciCon(Integer cntNoMemoryCom, Integer cntOwnMemoryCom, Integer cntExternalMemoryCom, Memory ownMemory, String procName) {
+        super(cntNoMemoryCom, cntOwnMemoryCom, cntExternalMemoryCom, ownMemory, procName);
     }
 
     @Override
@@ -24,14 +24,17 @@ public class ProcessorPciCon extends Processor{
             Integer comNumber = (int)(Math.random() * 2);
             switch (comNumber){
                 case 0-> {
+                    super.status = Status.fromString(ownMemory.getName());
                     TimeUnit.SECONDS.sleep(2);
                     super.cntOwnMemoryCom--;
                 }
                 case 1-> {
+                    super.status = Status.fromString(getRandomMemory());
                     TimeUnit.SECONDS.sleep(2);
                     super.cntExternalMemoryCom--;
                 }
             }
+            System.out.println(toString());
         }
     }
 }
