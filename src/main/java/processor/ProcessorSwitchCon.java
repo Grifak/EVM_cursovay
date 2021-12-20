@@ -15,7 +15,34 @@ public class ProcessorSwitchCon extends Processor{
     }
 
     @Override
-    public void runProgram() {
+    public void run() {
+        try {
+            runProgram();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void runProgram() throws InterruptedException {
+        while (!(super.cntOwnMemoryCom == 0 && super.cntExternalMemoryCom == 0)){
+            if(super.cntExternalMemoryCom == 0) {
+                workWithOwnMem();
+                continue;
+            }
+            if(super.cntOwnMemoryCom == 0){
+                workWithExternalMem();
+                continue;
+            }
+            Integer comNumber = (int) (Math.random() * 2);
+            switch (comNumber){
+                case 0-> {
+                    workWithOwnMem();
+                }
+                case 1-> {
+                    workWithExternalMem();
+                }
+            }
+        }
     }
 }
