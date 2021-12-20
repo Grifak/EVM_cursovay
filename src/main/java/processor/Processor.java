@@ -52,35 +52,40 @@ public abstract class Processor extends Thread{
         return procName + ": " + status.getTitle();
     }
 
-    public synchronized void workWithOwnMem() throws InterruptedException {
-        if(ownMemory.getBusy() == true) {
-            this.wait();
-            this.status = Status.WAIT;
-            System.out.println(toString());
-        }
-        else {
-            this.status = Status.fromString(ownMemory.getName());
-            ownMemory.setBusy(true);
-            System.out.println(toString());
-            TimeUnit.SECONDS.sleep(2);
-            this.cntOwnMemoryCom--;
-            ownMemory.setBusy(false);
-            notify();
+    public void workWithOwnMem() throws InterruptedException {
+        synchronized (ownMemory) {
+            if (ownMemory.getBusy() == true) {
+                this.status = Status.WAIT;
+                System.out.println(toString());
+                ownMemory.wait();
+            } else {
+                this.status = Status.fromString(ownMemory.getName());
+                ownMemory.setBusy(true);
+                System.out.println(toString());
+                TimeUnit.SECONDS.sleep(1);
+                this.cntOwnMemoryCom--;
+                ownMemory.setBusy(false);
+                ownMemory.notify();
+            }
         }
     }
 
-    public synchronized void workWithExternalMem() throws InterruptedException {
+    public void workWithExternalMem() throws InterruptedException {
         Memory exMem = getRandomMemory();
-        if(exMem.getBusy() == true) {
-            this.wait();
-            this.status = Status.WAIT;
-            System.out.println(toString());
-        }
-        else {
-            this.status = Status.fromString(exMem.getName());
-            System.out.println(toString());
-            TimeUnit.SECONDS.sleep(2);
-            this.cntExternalMemoryCom--;
+        synchronized (exMem) {
+            if (exMem.getBusy() == true) {
+                this.status = Status.WAIT;
+                System.out.println(toString());
+                exMem.wait();
+            } else {
+                ownMemory.setBusy(true);
+                this.status = Status.fromString(exMem.getName());
+                System.out.println(toString());
+                TimeUnit.SECONDS.sleep(1);
+                this.cntExternalMemoryCom--;
+                ownMemory.setBusy(false);
+                exMem.notify();
+            }
         }
     }
 
